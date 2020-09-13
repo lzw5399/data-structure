@@ -1,1 +1,3 @@
-module "data-structure"
+module data-structure
+
+go 1.14
