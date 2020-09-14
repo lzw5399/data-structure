@@ -9,13 +9,6 @@ package main
 
 import "fmt"
 
-func main() {
-	var list LinearList // 定义一个顺序表
-	InitList(&list)     // 对顺序表进行初始化
-
-	fmt.Println(list)
-}
-
 const (
 	MaxSize = 10
 )
@@ -32,4 +25,11 @@ func InitList(list *LinearList) {
 		list.Data[i] = 0
 	}
 	list.Length = 0
+}
+
+func main() {
+	var list LinearList // 定义一个顺序表
+	InitList(&list)     // 对顺序表进行初始化
+
+	fmt.Println(list)
 }
