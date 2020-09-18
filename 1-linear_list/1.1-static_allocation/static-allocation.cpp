@@ -77,6 +77,28 @@ bool ListDelete(LinearList &list, int i, int &elem) {
     return true;
 }
 
+// i这里是位序(第几位元素，从1开始)
+// 按位查找
+// 时间复杂度: O(1)
+int GetElem(LinearList list, int i) {
+    return list.Data[i - 1];
+}
+
+// 传入elem元素，查找顺序表里第一个值等于elem的元素，并返回位序
+// 按值查找
+// 算法时间复杂度解析：
+// 最好的是目标在表头，为O(1)
+// 最坏的是目标在表尾，为O(n)
+// 平均复杂度为O(n)
+int LocateElem(LinearList list, int elem) {
+    for (int i = 0; i < list.Length; i++) {
+        if (list.Data[i] == elem)
+            return i + 1;
+    }
+
+    return 0;
+}
+
 int main() {
     LinearList list;
     InitList(list);
@@ -102,6 +124,18 @@ int main() {
         cout << "删除成功，被删除掉的元素的值为：" << refBack << endl;
     } else {
         cout << "位序i非法，删除失败" << endl;
+    }
+
+    // 按位查找
+    int elem = GetElem(list, 4);
+    cout << "顺序表第四位元素: " << elem << endl;
+
+    // 按值查找
+    int i = LocateElem(list, 66);
+    if (i != 0) {
+        cout << "66在顺序表中的位序为: " << i << endl;
+    } else {
+        cout << "顺序表中查不到值为66的元素" << endl;
     }
 
     return 0;
