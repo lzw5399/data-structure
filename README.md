@@ -32,5 +32,11 @@
      
      // 不带头节点的 在位序i(从1开始)插入元素elem
      bool ListInsertWithoutHeaderNode(LinkList &list, int i, ElemType elem);
+     
+     // 后插操作: 在previousNode之后插入元素elem
+     bool InsertNextNode(LNode *previousNode, ElemType elem)
+     
+     // 前插操作: 在p之前插入元素elem
+     bool InsertPriorNode(LNode *p, ElemType elem)
       ```
    

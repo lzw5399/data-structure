@@ -103,6 +103,36 @@ bool ListInsertWithoutHeaderNode(LinkList &list, int i, ElemType elem) {
     return true;
 }
 
+// 后插操作: 在previousNode之后插入元素elem
+// 时间复杂度: O(1)
+bool InsertNextNode(LNode *previousNode, ElemType elem) {
+    if (previousNode == NULL)
+        return false;
+
+    LNode *newNode = (LNode *) malloc(sizeof(LNode));
+    newNode->data = elem;
+    newNode->next = NULL;
+    previousNode->next = newNode;
+
+    return true;
+}
+
+// 前插操作: 在p之前插入元素elem
+// 由于单链表只能往后遍历，所有操作是 【...->p->p+1】变成了 【...->p->newNode->p+1】但是之后的p存的是elem即新值，newNode节点存的是原先的p里面的值
+// 时间复杂度: O(1)
+bool InsertPriorNode(LNode *p, ElemType elem) {
+    if (p == NULL)
+        return false;
+
+    LNode *newNode = (LNode *) malloc(sizeof(LNode));
+    newNode->next = p->next;
+    newNode->data = p->data;
+    p->data = elem;
+    p->next = newNode;
+
+    return true;
+}
+
 int main() {
     // 声明一个指向单链表的指针
     LinkList list;
