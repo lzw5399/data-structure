@@ -34,9 +34,9 @@
      bool ListInsertWithoutHeaderNode(LinkList &list, int i, ElemType elem);
      
      // 后插操作: 在previousNode之后插入元素elem
-     bool InsertNextNode(LNode *previousNode, ElemType elem)
+     bool InsertNextNode(LNode *previousNode, ElemType elem);
      
      // 前插操作: 在p之前插入元素elem
-     bool InsertPriorNode(LNode *p, ElemType elem)
+     bool InsertPriorNode(LNode *p, ElemType elem);
       ```
    
