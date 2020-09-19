@@ -11,10 +11,11 @@
 using namespace std;
 
 #define MAXSIZE 10
+#define DataType int
 
 // 定义顺序表静态分配的结构体
 typedef struct {
-    int Data[MAXSIZE];
+    DataType Data[MAXSIZE];
     int Length;
 } LinearList;
 
@@ -31,7 +32,7 @@ void InitList(LinearList &list) {
 // 最好的是当i = list.Length + 1，正好在最后一位空的，为O(1)
 // 最坏的是当i = 1，在表头，剩余的所有元素都要后移一位，为O(n)
 // 平均复杂度为O(n)
-bool ListInsert(LinearList &list, int i, int elem) {
+bool ListInsert(LinearList &list, int i, DataType elem) {
     // 0. 预检查输入合法性
     if (list.Length >= MAXSIZE) // 存储空间已满，不能插入
         return false;
@@ -55,7 +56,7 @@ bool ListInsert(LinearList &list, int i, int elem) {
 // 最好的是当i = list.Length，正好删除最后一位元素，为O(1)
 // 最坏的是当i = 1，删除表头元素，剩余所有元素都要前移一位，为O(n)
 // 平均复杂度为O(n)
-bool ListDelete(LinearList &list, int i, int &elem) {
+bool ListDelete(LinearList &list, int i, DataType &elem) {
     // 0. 输入参数预检
     if (i < 1 || i > list.Length)
         return false;
@@ -90,7 +91,7 @@ int GetElem(LinearList list, int i) {
 // 最好的是目标在表头，为O(1)
 // 最坏的是目标在表尾，为O(n)
 // 平均复杂度为O(n)
-int LocateElem(LinearList list, int elem) {
+int LocateElem(LinearList list, DataType elem) {
     for (int i = 0; i < list.Length; i++) {
         if (list.Data[i] == elem)
             return i + 1;
@@ -127,7 +128,7 @@ int main() {
     }
 
     // 按位查找
-    int elem = GetElem(list, 4);
+    DataType elem = GetElem(list, 4);
     cout << "顺序表第四位元素: " << elem << endl;
 
     // 按值查找
