@@ -63,6 +63,46 @@ bool ListInsert(LinkList &list, int i, ElemType elem) {
     return true;
 }
 
+// i这里是位序(第几位元素，从1开始)
+// 【不带头节点】的插入实现方式
+// 平均时间复杂度: O(n)
+bool ListInsertWithoutHeaderNode(LinkList &list, int i, ElemType elem) {
+    // 1. 参数预检查
+    if (i < 1)
+        return false;
+
+    // 由于不带头节点，针对位序i=1的需要特殊处理
+    if (i == 1) {
+        LNode *headerNode = (LNode *) malloc(sizeof(LNode));
+        headerNode->data = elem;
+        headerNode->next = NULL;
+        list = headerNode;
+
+        return true;
+    }
+
+    // 2. 循环得到第i-1个元素
+    LNode *previousNode;
+    previousNode = list;
+    int j = 0;
+
+    while (previousNode != NULL && j < i - 1) {
+        previousNode = previousNode->next;
+        j++;
+    }
+
+    if (previousNode == NULL) // 防止i不合法，大于链表本身的长度
+        return false;
+
+    // 3. malloc为新节点申请内存空间,
+    LNode *newNode = (LNode *) malloc(sizeof(LNode));
+    newNode->data = elem;
+    newNode->next = previousNode->next;
+    previousNode->next = newNode;
+
+    return true;
+}
+
 int main() {
     // 声明一个指向单链表的指针
     LinkList list;

@@ -81,7 +81,7 @@ bool ListDelete(LinearList &list, int i, DataType &elem) {
 // i这里是位序(第几位元素，从1开始)
 // 按位查找
 // 时间复杂度: O(1)
-int GetElem(LinearList list, int i) {
+DataType GetElem(LinearList list, int i) {
     return list.Data[i - 1];
 }
 
