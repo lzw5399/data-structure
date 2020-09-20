@@ -41,5 +41,11 @@
      
      // 删除指定位序的i(从1开始)的元素，并返回被删除的元素elem
      bool ListDelete(LinkList list, int i, ElemType &elem);
+     
+     // 删除单链表的当前节点node
+     bool DeleteNode(LNode *node);
+     
+     // 按值查找: 找到第一个值为elem的节点
+     LNode *LocateElem(LinkList list, ElemType elem);
       ```
    

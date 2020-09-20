@@ -111,7 +111,7 @@ bool InsertNextNode(LNode *previousNode, ElemType elem) {
 
     LNode *newNode = (LNode *) malloc(sizeof(LNode));
     newNode->data = elem;
-    LNode * temp = previousNode->next;
+    LNode *temp = previousNode->next;
     previousNode->next = newNode;
     newNode->next = temp;
 
@@ -183,6 +183,35 @@ bool DeleteNode(LNode *node) {
     free(nextNode);
 
     return true;
+}
+
+// 按位查找: 找到第i位(从1开始)元素并返回
+// 平均时间复杂度：O(n)
+LNode *GetElem(LinkList list, int i) {
+    // 参与预检
+    if (i < 1)
+        return NULL;
+
+    // 循环找到第i个节点，这里就不需要判断node==NULL了
+    // 等于空直接返回就好了
+    LNode *node = list;
+    int j = 0;
+    while (node != NULL && j < i) {
+        node = node->next;
+        j++;
+    }
+
+    return node;
+}
+
+// 按值查找: 找到第一个值为elem的节点
+// 平均时间复杂度：O(n)
+LNode *LocateElem(LinkList list, ElemType elem) {
+    LNode *node = list;
+    while (node != NULL && node->data != elem)
+        node = node->next;
+
+    return node;
 }
 
 int main() {
