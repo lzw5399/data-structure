@@ -111,9 +111,8 @@ bool InsertNextNode(LNode *previousNode, ElemType elem) {
 
     LNode *newNode = (LNode *) malloc(sizeof(LNode));
     newNode->data = elem;
-    LNode *temp = previousNode->next;
+    newNode->next = previousNode->next;
     previousNode->next = newNode;
-    newNode->next = temp;
 
     return true;
 }
