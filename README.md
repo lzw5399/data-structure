@@ -45,7 +45,16 @@
      // 删除单链表的当前节点node
      bool DeleteNode(LNode *node);
      
+     // 按位查找: 找到第i位(从1开始)元素并返回
+     LNode *GetElem(LinkList list, int i);
+     
      // 按值查找: 找到第一个值为elem的节点
      LNode *LocateElem(LinkList list, ElemType elem);
+     
+     // 带头节点的 逆置单链表
+     LinkList ReverseList(LinkList list);
+     
+     // 不带头结点的 逆置单链表
+     LinkList ReverseListWithoutHeaderNode(LinkList list);
       ```
    

@@ -78,6 +78,32 @@ LinkList ReverseList(LinkList list) {
     return newList;
 }
 
+// 不带头结点的逆置
+LinkList ReverseListWithoutHeaderNode(LinkList list) {
+    if (list == NULL || list->next == NULL)
+        return NULL;
+
+    LinkList newList;
+
+    LNode *currentNode = list->next; // 这里跳过list的头节点
+    int index = 0;
+    while (currentNode != NULL) {
+        LNode *tempNext = currentNode->next;
+        if (index == 0) {
+            newList = currentNode;
+            newList->next = NULL;
+        } else {
+            currentNode->next = newList;
+            newList = currentNode;
+        }
+
+        currentNode = tempNext;
+        index++;
+    }
+
+    return newList;
+}
+
 int main() {
     // 1. 准备一个原始的单链表
     LinkList originList;
@@ -86,8 +112,11 @@ int main() {
         ListInsert(originList, i, i);
     }
 
-    // 2. 采用头插法 逆置单链表
+    // 2. 采用头插法 逆置带头节点的单链表
     LinkList newList = ReverseList(originList);
+
+    // 3. 头插法 逆置出不带头节点的单链表
+    LinkList newListWithoutHeaderNode = ReverseListWithoutHeaderNode(newList);
 
     return 0;
 }
