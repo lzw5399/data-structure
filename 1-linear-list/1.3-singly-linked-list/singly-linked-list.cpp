@@ -111,8 +111,9 @@ bool InsertNextNode(LNode *previousNode, ElemType elem) {
 
     LNode *newNode = (LNode *) malloc(sizeof(LNode));
     newNode->data = elem;
-    newNode->next = NULL;
+    LNode * temp = previousNode->next;
     previousNode->next = newNode;
+    newNode->next = temp;
 
     return true;
 }
@@ -133,17 +134,87 @@ bool InsertPriorNode(LNode *p, ElemType elem) {
     return true;
 }
 
+// 删除指定位序的i(从1开始)的元素，并返回被删除的元素elem
+// 平均时间复杂度：O(n)
+bool ListDelete(LinkList list, int i, ElemType &elem) {
+    if (i < 1)
+        return false;
+
+    // 找到第i-1个节点
+    LNode *previousNode = list;
+    int j = 0;
+    while (previousNode != NULL && j < i - 1) {
+        previousNode = previousNode->next;
+        j++;
+    }
+
+    if (previousNode == NULL) // i不合法，超过了list的长度
+        return false;
+
+    if (previousNode->next == NULL) // 第i-1个节点之后没有其他的节点了
+        return false;
+
+    // 把i-1节点指向i+1
+    LNode *iNode = previousNode->next;
+    previousNode->next = iNode->next;
+
+    elem = iNode->data;
+    // free第i个节点
+    free(iNode);
+
+    return true;
+}
+
+// 删除单链表的当前节点node
+// 这个方法有一个Bug就是如果node本身就是最后一个节点，则只能从表头开始遍历
+bool DeleteNode(LNode *node) {
+    // 1. 参数预检
+    if (node == NULL)
+        return false;
+
+    // 2. 把node后一个节点的值赋给node
+    LNode *nextNode = node->next;
+    node->data = nextNode->data;
+
+    // 3. node的next指向node后一个节点的next
+    node->next = nextNode->next;
+
+    // 4. free掉node的next节点
+    free(nextNode);
+
+    return true;
+}
+
 int main() {
     // 声明一个指向单链表的指针
     LinkList list;
 
+    // 初始化带头节点的单链表
     InitList(list);
 
+    // 插入一些数据
     ListInsert(list, 1, 233);
     ListInsert(list, 2, 555);
     ListInsert(list, 2, 666);
     ListInsert(list, 2, 777);
     ListInsert(list, 9, 999);
+
+    // 后插操作
+    InsertNextNode(list->next, 789);
+
+    // 前插操作
+    InsertPriorNode(list->next, 456);
+
+    // 删除某个位序的节点，并返回值
+    ElemType refBack;
+    if (ListDelete(list, 3, refBack)) {
+        cout << "删除第3个元素成功，被删掉的元素值为:" << refBack << endl;
+    } else {
+        cout << "删除元素失败" << endl;
+    }
+
+    // 删除某个节点Node
+    DeleteNode(list->next->next);
 
     return 0;
 }

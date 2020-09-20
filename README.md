@@ -38,5 +38,8 @@
      
      // 前插操作: 在p之前插入元素elem
      bool InsertPriorNode(LNode *p, ElemType elem);
+     
+     // 删除指定位序的i(从1开始)的元素，并返回被删除的元素elem
+     bool ListDelete(LinkList list, int i, ElemType &elem);
       ```
    
