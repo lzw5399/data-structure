@@ -57,4 +57,7 @@
      // 不带头结点的 逆置单链表
      LinkList ReverseListWithoutHeaderNode(LinkList list);
       ```
+   - 1.4-double-linked-list(线性表 -> 链表 -> 双链表)
+   - 1.5-circular-singly-linked-list(线性表 -> 链表 -> 循环单链表)
+   - 1.6-circular-double-linked-list(线性表 -> 链表 -> 循环双链表)
    

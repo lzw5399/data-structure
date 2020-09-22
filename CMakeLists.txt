@@ -9,3 +9,5 @@ add_executable(static-allocation 1-linear-list/1.1-static-allocation/static-allo
 add_executable(single-linked-list 1-linear-list/1.3-singly-linked-list/singly-linked-list.cpp)
 add_executable(reverse-singly-linked-list 1-linear-list/1.3-singly-linked-list/homework/reverse-singly-linked-list.cpp)
 add_executable(double-linked-list 1-linear-list/1.4-double-linked-list/double-linked-list.cpp)
+add_executable(circular-singly-linked-list 1-linear-list/1.5-circular-singly-linked-list/circular-singly-linked-list.cpp)
+add_executable(circular-double-linked-list 1-linear-list/1.6-circular-double-linked-list/circular-double-linked-list.cpp)
